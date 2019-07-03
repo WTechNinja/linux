@@ -264,6 +264,18 @@
 			};
 		};
 	};
+
+	pm8916@1 {
+		codec@f000 {
+			jack-gpios = <&msmgpio 110 GPIO_ACTIVE_LOW>;
+			qcom,micbias-lvl = <2800>;
+			qcom,mbhc-vthreshold-low = <75 150 237 450 500>;
+			qcom,mbhc-vthreshold-high = <75 150 237 450 500>;
+
+			pinctrl-names = "default";
+			pinctrl-0 = <&jack_default>;
+		};
+	};
 };
 
 &smd_rpm_regulators {
@@ -398,6 +410,14 @@
 
 	gpio_hall_sensor_default: gpio-hall-sensor-default {
 		pins = "gpio52";
+		function = "gpio";
+
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	jack_default: jack-default {
+		pins = "gpio110";
 		function = "gpio";
 
 		drive-strength = <2>;
